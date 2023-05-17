@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+    <h1>Change role</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            {% bootstrap_button "Save" button_type="submit" %}
+        {% endbuttons %}
+    </form>
+    <p>
+        <a href="{% url 'profile_edit' %}"><button class="btn btn-primary">Back to edit</button></a>
+    </p>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% load bootstrap5 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ head_page_name }}</title>
+
+    {% bootstrap_css %}
+    {% block extra_css %}{% endblock %}
+    {% bootstrap_javascript %}
+</head>
+<body class="d-flex flex-column h-100">
+<header>
+    {% block nav_menu %}
+        {% include 'base/nav_menu.html' %}
+    {% endblock %}
+</header>
+
+<div class="position-relative container flex-shrink-0">
+    {% include 'base/messages/messages_block.html' %}
+
+    <main role="main">
+        <div class="container">
+            {% block content %} asd{% endblock %}
+        </div>
+    </main>
+</div>
+
+<footer class="footer mt-auto py-3 bg-body-tertiary">
+  <div class="container">
+    {% block footer %}
+        {% include 'base/footer.html' %}
+    {% endblock %}
+  </div>
+</footer>
+
+<script src="{% static 'js/messages.js' %}"></script>
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+<h1>Your rates</h1>
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Comment</th>
+              <th scope="col">Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rate in your_rates %}
+                <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ rate.comment }}</td>
+                      <td>{{ rate.author }}</td>
+                      <td><a href="{% url 'rate' rate.pk %}"><button type="button" class="btn btn-primary">Open</button></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<h1>Rates from you</h1>
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Comment</th>
+              <th scope="col">User</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rate in rates_from_you %}
+                <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ rate.comment }}</td>
+                      <td>{{ rate.user }}</td>
+                      <td><a href="{% url 'rate' rate.pk %}"><button type="button" class="btn btn-primary">Open</button></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

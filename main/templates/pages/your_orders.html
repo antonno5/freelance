@@ -1,0 +1,85 @@
+{% extends 'base/base.html' %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+<h1>Your orders
+    {% if user.is_customer %}
+        <a href="{% url 'order_create' %}"><button class="btn btn-primary">Create order</button></a>
+    {% endif %}
+</h1>
+    {% if user.is_customer %}
+        <h3>Open orders</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Activity</th>
+                      <th scope="col">Stack</th>
+                      <th scope="col">Payment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders_open %}
+                        <tr>
+                              <th scope="row">{{ forloop.counter }}</th>
+                              <td>{{ order.title }}</td>
+                              <td>{{ order.activity }}</td>
+                              <td>{{ order.stack }}</td>
+                              <td>{{ order.payment }}</td>
+                              <td><a href="{% url 'order' order.pk %}"><button type="button" class="btn btn-primary">Open</button></a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    {% endif %}
+    <h3>Running orders</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Activity</th>
+                  <th scope="col">Stack</th>
+                  <th scope="col">Payment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders_running %}
+                    <tr>
+                          <th scope="row">{{ forloop.counter }}</th>
+                          <td>{{ order.title }}</td>
+                          <td>{{ order.activity }}</td>
+                          <td>{{ order.stack }}</td>
+                          <td>{{ order.payment }}</td>
+                          <td><a href="{% url 'order' order.pk %}"><button type="button" class="btn btn-primary">Open</button></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <h3>Closed orders</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Activity</th>
+                  <th scope="col">Stack</th>
+                  <th scope="col">Payment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders_closed %}
+                    <tr>
+                          <th scope="row">{{ forloop.counter }}</th>
+                          <td>{{ order.title }}</td>
+                          <td>{{ order.activity }}</td>
+                          <td>{{ order.stack }}</td>
+                          <td>{{ order.payment }}</td>
+                          <td><a href="{% url 'order' order.pk %}"><button type="button" class="btn btn-primary">Open</button></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+<h1>Edit your order</h1>
+<form action="" method="post" name="order_edit_form">
+    {% csrf_token %}
+    {% bootstrap_form order_edit_form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            Save
+        </button>
+    {% endbuttons %}
+</form>
+{% endblock %}

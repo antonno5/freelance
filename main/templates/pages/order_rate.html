@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-success">
+                Rate
+            </button>
+        {% endbuttons %}
+    </form>
+    <p>
+        <a href="{% url 'order' order.pk %}"><button class="btn btn-warning">Back to order</button></a>
+    </p>
+{% endblock %}

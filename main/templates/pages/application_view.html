@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+    <h1>Application</h1>
+    <p>Title {{  application.order.title }}</p>
+    <p>Activity {{ application.order.activity }}</p>
+    <p>Description {{ application.order.description }}</p>
+    <p>Stack {{ application.order.stack }}</p>
+    <p>Author {{ application.author }}</p>
+    <p>Receiver {{ application.receiver }}</p>
+    <p>Payment {{ application.order.payment }}</p>
+    <p>Comment {{ application.comment }}</p>
+    {% if request.user == application.author and application.state == 1  %}
+        <td><a href="{% url 'application_edit' application.pk %}"><button type="button" class="btn btn-warning">Edit</button></a></td>
+        <td><a href="{% url 'application_delete' application.pk %}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+    {% endif %}
+    {% if request.user == application.receiver and application.state == 1 %}
+        <td><a href="{% url 'application_accept' application.pk %}"><button type="button" class="btn btn-success">Accept</button></a></td>
+        <td><a href="{% url 'application_decline' application.pk %}"><button type="button" class="btn btn-danger">Decline</button></a></td>
+    {% endif %}
+{% endblock %}

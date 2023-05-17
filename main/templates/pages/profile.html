@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    {% if page_spec_type.is_executor %}
+        <h1>Executor</h1>
+        <h2>Name: {{ page_spec_type.first_name }} {{ page_spec_type.last_name }}</h2>
+        <h3>Phone: {{ page_spec_type.phone_number }}</h3>
+        <p>Activity: {{ page_spec_type.activity }}</p>
+        <p>Resume: {{ page_spec_type.resume }}</p>
+    {% elif page_spec_type.is_private_customer %}
+        <h1>Private customer</h1>
+        <h2>Name: {{ page_spec_type.first_name }} {{ page_spec_type.last_name }}</h2>
+        <h3>Phone: {{ page_spec_type.phone_number }}</h3>
+    {% elif page_spec_type.is_corporate_customer %}
+        <h1>Corporate customer</h1>
+        <h2>Company: {{ page_spec_type.company_name }}</h2>
+        <h3>Founded in {{ page_spec_type.creation_date }}</h3>
+        <h3>Reg number: {{ page_spec_type.registration_number }}</h3>
+
+        <h4>Contact name: {{ page_spec_type.first_name }} {{ page_spec_type.last_name }}</h4>
+        <h4>Contact phone: {{ page_spec_type.phone_number }}</h4>
+    {% endif %}
+    <h3>Rate: {{ rate }}</h3>
+    {% if page_user == user %}
+        <a href="{% url 'profile_edit' %}"><button class="btn btn-primary">Edit</button></a>
+    {% endif %}
+
+{% endblock %}

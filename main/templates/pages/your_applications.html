@@ -1,0 +1,99 @@
+{% extends 'base/base.html' %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+<h1>Your applications</h1>
+    <h3>Pending Applications</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Activity</th>
+                  <th scope="col">Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for application in applications_pending %}
+                    <tr>
+                          <th scope="row">{{ forloop.counter }}</th>
+                          <td>{{ application.order.title }}</td>
+                          <td>{{ application.order.activity }}</td>
+                          <td>{{ application.comment }}</td>
+                          <td><a href="{% url 'order' application.order.pk %}"><button type="button" class="btn btn-primary">Open order</button></a></td>
+                          <td><a href="{% url 'application' application.pk %}"><button type="button" class="btn btn-primary">Open application</button></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <h3>Accepted Applications</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Activity</th>
+                  <th scope="col">Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for application in applications_accepted %}
+                    <tr>
+                          <th scope="row">{{ forloop.counter }}</th>
+                          <td>{{ application.order.title }}</td>
+                          <td>{{ application.order.activity }}</td>
+                          <td>{{ application.comment }}</td>
+                          <td><a href="{% url 'order' application.order.pk %}"><button type="button" class="btn btn-primary">Open order</button></a></td>
+                          <td><a href="{% url 'application' application.pk %}"><button type="button" class="btn btn-primary">Open application</button></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <h3>Declined Applications</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Activity</th>
+                  <th scope="col">Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for application in applications_declined %}
+                    <tr>
+                          <th scope="row">{{ forloop.counter }}</th>
+                          <td>{{ application.order.title }}</td>
+                          <td>{{ application.order.activity }}</td>
+                          <td>{{ application.comment }}</td>
+                          <td><a href="{% url 'order' application.order.pk %}"><button type="button" class="btn btn-primary">Open order</button></a></td>
+                          <td><a href="{% url 'application' application.pk %}"><button type="button" class="btn btn-primary">Open application</button></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <h3>Finished Applications</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Activity</th>
+                  <th scope="col">Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for application in applications_finished %}
+                    <tr>
+                          <th scope="row">{{ forloop.counter }}</th>
+                          <td>{{ application.order.title }}</td>
+                          <td>{{ application.order.activity }}</td>
+                          <td>{{ application.comment }}</td>
+                          <td><a href="{% url 'order' application.order.pk %}"><button type="button" class="btn btn-primary">Open order</button></a></td>
+                          <td><a href="{% url 'application' application.pk %}"><button type="button" class="btn btn-primary">Open application</button></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+    <h1>Order</h1>
+    <p>Title {{  order.title }}</p>
+    <p>Activity {{ order.activity }}</p>
+    <p>Description {{ order.description }}</p>
+    <p>Stack {{ order.stack }}</p>
+    <p url = >Executor {{ order.executor.user.email }}</p>
+    <p>Customer {{ order.customer.user.email }}</p>
+    <p>Payment {{ order.payment }}</p>
+    {% if order.customer.get_down_class == request.user.get_spec_type_object %}
+        {% if order.state == 1 %}
+            <td><a href="{% url 'order_edit' order.pk %}"><button type="button" class="btn btn-warning">Edit</button></a></td>
+            <td><a href="{% url 'order_delete' order.pk %}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+        {% endif %}
+        {% if order.state == 2 %}
+            <td><a href="{% url 'application_finish' application.pk %}"><button type="button" class="btn btn-success">Finish</button></a></td>
+        {% endif %}
+    {% endif %}
+    {% if request.user.is_executor and order.state == 1 %}
+        <td><a href="{% url 'application_create' order.pk %}"><button type="button" class="btn btn-success">Create Application</button></a></td>
+    {% endif %}
+    {% if order.state == order.OrderStates.CLOSED %}
+        {% if order.customer.get_down_class == request.user.get_spec_type_object or order.executor.get_down_class == request.user.get_spec_type_object %}
+            <a href="{% url 'order_rate' order.pk %}"><button type="button" class="btn btn-primary">Rate</button></a>
+        {% endif %}
+    {% endif %}
+{% endblock %}

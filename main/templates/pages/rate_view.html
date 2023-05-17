@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+    <h1>Rate</h1>
+    <p>User {{ rate.user }}</p>
+    <p>Author {{ rate.author }}</p>
+    <p>Total rate {{ rate.count_rate }}</p>
+    <p>Comment {{ rate.comment }}</p>
+    {% if rate.author == request.user %}
+            <td><a href="{% url 'rate_edit' rate.pk %}"><button type="button" class="btn btn-warning">Edit</button></a></td>
+            <td><a href="{% url 'rate_delete' rate.pk %}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+    {% endif %}
+    <a href="{% url 'order' rate.order.pk %}"><button type="button" class="btn btn-primary">Open order</button></a>
+{% endblock %}
